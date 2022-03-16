@@ -9,10 +9,11 @@ import javax.jms.Queue;
 
 @Configuration
 @EnableJms
-public class Config {
+public class ConfigResource {
 
     @Bean
     public Queue queue() {
+
         return new ActiveMQQueue("mdb.inmemory.queue");
     }
 }
