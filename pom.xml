@@ -15,6 +15,7 @@
 	<description>Spring boot project with in-memory ActiveMQ</description>
 	<properties>
 		<java.version>11</java.version>
+		<mongodb_atlas_api_key>apiKeyValue</mongodb_atlas_api_key>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -35,22 +36,6 @@
 			<artifactId>reactor-test</artifactId>
 			<scope>test</scope>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-mongodb</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.squareup.okhttp</groupId>
-			<artifactId>okhttp</artifactId>
-			<version>2.7.5</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.squareup.okhttp3/okhttp -->
-		<dependency>
-			<groupId>com.squareup.okhttp3</groupId>
-			<artifactId>okhttp</artifactId>
-			<version>5.0.0-alpha.6</version>
-		</dependency>
-
 		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
 		<!-- https://mvnrepository.com/artifact/org.json/json -->
 		<dependency>
@@ -58,17 +43,20 @@
 			<artifactId>json</artifactId>
 			<version>20211205</version>
 		</dependency>
-
-
-
 		<!-- https://mvnrepository.com/artifact/org.mongodb/mongo-java-driver -->
 	</dependencies>
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
-				<version>${parent.version}</version>
+				<version>${project.parent.version}</version>
 			</plugin>
 		</plugins>
 	</build>
