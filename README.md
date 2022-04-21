@@ -12,7 +12,9 @@
 ### Step 1 : Provision a MongoDB Atlas cluster
 > Go with the following parameters: dedicated clusters - cloud provider = AWS - region = Paris(eu-west) - cluster tier = M30 (go with the default configuration) - turn off the cloud backup service - cluster name = AtlasMQ, and then click on create cluster. 
 > It will take approximately 10-12 min to provision your cluster.
-
+<p align="center">
+<img width="555" alt="Screenshot 2022-04-21 at 23 38 07" src="https://user-images.githubusercontent.com/84564830/164556366-2143f13c-18b2-40e6-8e66-7a6540ff8c68.png">
+</p>
 ### Step 2 : Provision a MongoDB Atlas cluster
 > Click on Browse Collections.
 > Click on Add You First Database and then provide the following values: database name = sample_customers, collection name = customers. You can finally click on Create.
