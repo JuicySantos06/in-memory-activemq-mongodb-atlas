@@ -1,6 +1,6 @@
 # Demo MongoDB Atlas & ActiveMQ
 
-## General Information
+### General Information
 > The following demo aims at showing how you could integrate a MongoDB Atlas cluster with an in-memory ActiveMQ message broker. 
 > We will be leveraging various MongoDB Atlas capabilities like Realm triggers and functions. 
 > This demo is intended to showcase functional aspects of such an integration. 
@@ -92,9 +92,69 @@ sudo git init
 sudo git clone https://github.com/JuicySantos06/in-memory-activemq.git
 ```
 > Install Apache Maven by issuing the following commands:
+```
+sudo sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+sudo sed -i s/\$releasever/7/g /etc/yum.repos.d/epel-apache-maven.repo
+sudo yum install -y apache-maven
+````
+> Update the application.properties file located in: /in-memory-activemq/src/main/resources.
+> Insert the correct values for the following elements: **mongodb.atlas.api.key, mongodb.atlas.cluster, mongodb.atlas.datab	ase, mongodb.atlas.collection**.
+> The mongodb.atlas.api.key is the api key you previously retrieved from MongoDB Atlas. 
+> Note that we are leveraging the latest cluster created (MQAtlas) as the target environment.
+> Go into the repository that you just downloaded and issue the following Maven command:
+```
+cd $HOME/git_repo/in-memory-activemq
+sudo mvn clean package
+```
+> Install and start Docker by issuing the following commands:
+```
+sudo yum install docker
+sudo systemctl start docker.service
+```
+> Build the Docker image of the in-memory-activemq container:
+```
+sudo docker build --tag=in-memory-activemq:latest .
+sudo docker images
+```
+> Let start and run the docker container:
+```
+sudo docker run -p 8282:8081 in-memory-activemq:latest
+```
 
 ### Step 9: Create a Realm Trigger and Function
+> Go back to your MongoDB Atlas portal and click on Realm.
+> Create a new application by clicking on Create a New App and fill in the required information with the following data: name = AtlasToActiveMQ, link your database = AtlasMQ, advanced configuration - app deployment model - local = Frankfurt, select an environment = testing.
+> Click on Triggers to create a trigger, then provide the following information: **trigger type = database, name = insertingDocumentToMDB, enabled = on, event ordering = on, cluster name = AtlasMQ, database name = sample_customers, collection name = customers, operation type = insert, full document = on, event type = function, function name = sendingToActiveMQ**.
+> And then copy and paste the following code:
+```
+exports = async function(changeEvent) {
+  const fullDocument = changeEvent.fullDocument;
+  const response = await context.http.post({
+    url: "http://<YOUR_EC2_INSTANCE_PUBLIC_IP>:8282/amq/mdb/publish/",
+    body: fullDocument,
+    encodeBodyAsJSON: true
+  })
+  // The response body is a BSON.Binary object. Parse it and return.
+  return EJSON.parse(response.body.text());
+};
+```
+> Ensure you have updated the url with the public ip address of the EC2 instance you previously started. 
+> You can get it by going back to your AWS portal and connecting to that instance:
+> Going back to MongoDB Realm, you can then Save, Review & Deploy your changes.
 
 ### Step 10: Full execution of the demo
+> Open a terminal window if you have closed the one pointing to the insert_customers_account script that you previously downloaded, and point to the folder containing that script. 
+> Go and issue the following command:
+```
+./insert_customers_account.py
+```
+> Ensure that you also have displayed the terminal window connected to your EC2 instance as you will be seeing the results of the inserted documents into the in-memory ActiveMQ broker.
+> And that’s about it folks. You just showcased a MongoDB Atlas & In-memory ActiveMQ integration by leveraging both Realm triggers and functions.
+> But that’s not it at all …
 
 ### Step 11 : ActiveMQ to MongoDB Atlas by leveraging our Data API capabilities
+> Go over the second MongoDB Atlas cluster you created earlier, the MQAtlas cluster.
+> You will see here all the documents that ActiveMQ is pushing towards MongoDB Atlas MQAtlas cluster.
+> Now it is the real end. 
+> You just showcased: 1) how MongoDB Atlas could be receiving data to be fetched or sent over ActiveMQ and, 2) how ActiveMQ + Atlas Data API could be leveraged to write data to a MongoDB Atlas MQAtlas cluster.
+
