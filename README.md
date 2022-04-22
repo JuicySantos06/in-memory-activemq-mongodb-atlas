@@ -17,23 +17,26 @@
 </p>
 <p align="center">
 <img width="592" alt="Screenshot 2022-04-21 at 23 41 21" src="https://user-images.githubusercontent.com/84564830/164556734-0b14564d-919a-424d-b8d1-7692e50a3f92.png">
- </p>
+</p>
+
 ### Step 2 : Provision a MongoDB Atlas cluster
 > Click on Browse Collections.
 <p align="center">
 <img width="638" alt="Screenshot 2022-04-22 at 09 39 37" src="https://user-images.githubusercontent.com/84564830/164633145-72fd4fe0-7740-4193-8068-a86ed9781a4b.png">
- <img width="639" alt="Screenshot 2022-04-22 at 09 39 45" src="https://user-images.githubusercontent.com/84564830/164633300-5e3927c4-845c-4341-9e1b-799269d5e2b3.png">
- </p>
+<img width="639" alt="Screenshot 2022-04-22 at 09 39 45" src="https://user-images.githubusercontent.com/84564830/164633300-5e3927c4-845c-4341-9e1b-799269d5e2b3.png">
+</p>
 > Click on Add You First Database and then provide the following values: database name = sample_customers, collection name = customers. You can finally click on Create.
 <p align="center">
 <img width="366" alt="Screenshot 2022-04-22 at 09 39 54" src="https://user-images.githubusercontent.com/84564830/164633396-51cfb43d-af88-4979-8146-12e358c4ff19.png">
- </p>
+</p>
+
 ### Step 3 :  Insert customer account data into the MongoDB database
 > Create the following directory on your laptop (wherever you wish to do so: e.g. Downloads directory for instance): atlas_activemq.
 Open a terminal window inside that folder and clone the CRUDScripts GitHub repository. Here is an example of that command: 
 ```
 git clone https://github.com/JuicySantos06/CRUDScripts.git
 ```
+>
 <p align="center">
 <img width="644" alt="Screenshot 2022-04-22 at 09 40 55" src="https://user-images.githubusercontent.com/84564830/164635184-9ebf2fc2-e28d-4757-a5d7-4cc86d8c430f.png">
 </p>
