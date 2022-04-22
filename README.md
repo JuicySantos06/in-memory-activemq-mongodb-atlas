@@ -206,8 +206,20 @@ sudo docker run -p 8282:8081 in-memory-activemq:latest
 
 ### Step 9: Create a Realm Trigger and Function
 > Go back to your MongoDB Atlas portal and click on Realm.
+<p align="center">
+<img width="636" alt="Screenshot 2022-04-22 at 14 35 00" src="https://user-images.githubusercontent.com/84564830/164715657-d9c38dab-c027-426a-a596-a169985df07a.png">
+</p>
+
 > Create a new application by clicking on Create a New App and fill in the required information with the following data: name = AtlasToActiveMQ, link your database = AtlasMQ, advanced configuration - app deployment model - local = Frankfurt, select an environment = testing.
+<p align="center">
+<img width="640" alt="Screenshot 2022-04-22 at 14 36 17" src="https://user-images.githubusercontent.com/84564830/164715655-6949bc33-f2df-497b-aae5-8ddcd471adfe.png">
+</p>
+
 > Click on Triggers to create a trigger, then provide the following information: **trigger type = database, name = insertingDocumentToMDB, enabled = on, event ordering = on, cluster name = AtlasMQ, database name = sample_customers, collection name = customers, operation type = insert, full document = on, event type = function, function name = sendingToActiveMQ**.
+<p align="center">
+<img width="637" alt="Screenshot 2022-04-22 at 14 36 25" src="https://user-images.githubusercontent.com/84564830/164715652-9e173ebd-0180-4d64-8e92-d0963ef22086.png">
+</p>
+
 > And then copy and paste the following code:
 ```
 exports = async function(changeEvent) {
@@ -222,7 +234,11 @@ exports = async function(changeEvent) {
 };
 ```
 > Ensure you have updated the url with the public ip address of the EC2 instance you previously started. 
-> You can get it by going back to your AWS portal and connecting to that instance:
+> You can get it by going back to your AWS portal and connecting to that instance.
+<p align="center">
+<img width="637" alt="Screenshot 2022-04-22 at 14 36 31" src="https://user-images.githubusercontent.com/84564830/164715645-fba873e0-97ae-47e0-8aa0-e3b1f4f00e47.png">
+</p>
+
 > Going back to MongoDB Realm, you can then Save, Review & Deploy your changes.
 
 ### Step 10: Full execution of the demo
@@ -238,6 +254,10 @@ exports = async function(changeEvent) {
 ### Step 11 : ActiveMQ to MongoDB Atlas by leveraging our Data API capabilities
 > Go over the second MongoDB Atlas cluster you created earlier, the MQAtlas cluster.
 > You will see here all the documents that ActiveMQ is pushing towards MongoDB Atlas MQAtlas cluster.
+<p align="center">
+<img width="639" alt="Screenshot 2022-04-22 at 14 36 45" src="https://user-images.githubusercontent.com/84564830/164715640-e92e5558-5796-4aee-b841-3b0d4edddc1a.png">
+</p>
+
 > Now it is the real end. 
 > You just showcased: 1) how MongoDB Atlas could be receiving data to be fetched or sent over ActiveMQ and, 2) how ActiveMQ + Atlas Data API could be leveraged to write data to a MongoDB Atlas MQAtlas cluster.
 
