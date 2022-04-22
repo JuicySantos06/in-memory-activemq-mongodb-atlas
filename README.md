@@ -12,7 +12,7 @@
 ### Step 1 : Provision a MongoDB Atlas cluster
 > Go with the following parameters: dedicated clusters - cloud provider = AWS - region = Paris(eu-west) - cluster tier = M30 (go with the default configuration) - turn off the cloud backup service - cluster name = AtlasMQ, and then click on create cluster. 
 > It will take approximately 10-12 min to provision your cluster.
-> 
+
 <p align="center">
 <img width="555" alt="Screenshot 2022-04-21 at 23 38 07" src="https://user-images.githubusercontent.com/84564830/164556366-2143f13c-18b2-40e6-8e66-7a6540ff8c68.png">
 <img width="592" alt="Screenshot 2022-04-21 at 23 41 21" src="https://user-images.githubusercontent.com/84564830/164556734-0b14564d-919a-424d-b8d1-7692e50a3f92.png">
@@ -32,31 +32,36 @@
 
 ### Step 3 :  Insert customer account data into the MongoDB database
 > Create the following directory on your laptop (wherever you wish to do so: e.g. Downloads directory for instance): atlas_activemq.
-Open a terminal window inside that folder and clone the CRUDScripts GitHub repository. Here is an example of that command: 
+> Open a terminal window inside that folder and clone the CRUDScripts GitHub repository. Here is an example of that command: 
 ```
 git clone https://github.com/JuicySantos06/CRUDScripts.git
 ```
->
+
 <p align="center">
 <img width="644" alt="Screenshot 2022-04-22 at 09 40 55" src="https://user-images.githubusercontent.com/84564830/164635184-9ebf2fc2-e28d-4757-a5d7-4cc86d8c430f.png">
 </p>
+
 > Go inside the CRUDScripts folder and then open the insert_customer_account file using the following command: 
 ```
 nano insert_customers_account
 ```
+
 > Go back to the MongoDB Atlas portal and click on Connect.
 <p align="center">
 <img width="639" alt="Screenshot 2022-04-22 at 09 41 05" src="https://user-images.githubusercontent.com/84564830/164635340-9dd8f2c3-053b-465e-ba2a-4fa926fc166e.png">
 <img width="587" alt="Screenshot 2022-04-22 at 09 41 14" src="https://user-images.githubusercontent.com/84564830/164635458-02984fa4-7305-4754-b73c-b86be54b87bd.png">
 </p>
+
 > Click on Connect your application and then modify the driver and version with the following values: driver = Python, version = 3.12 or later.
 <p align="center">
 <img width="635" alt="Screenshot 2022-04-22 at 09 41 23" src="https://user-images.githubusercontent.com/84564830/164635547-86d5eebd-86c3-4f7e-bab3-d06c298a3ad5.png">
 </p>
+
 > Copy the connection string displayed and paste it into the insert_customer_account file. You just need to paste it to update the MONGODB_ATLAS_URL. Do not forget to change the username and password with the correct values.
 <p align="center">
 <img width="637" alt="Screenshot 2022-04-22 at 09 41 36" src="https://user-images.githubusercontent.com/84564830/164635743-08fed5e4-27e5-448c-8b8f-881589b1a10d.png">
 </p>
+
 > Save the file and exit.
 > Change the file extension to .py
 > Go and execute the python script using the following command:
@@ -75,12 +80,14 @@ After that you should be able to run the previous command:
 <p align="center">
 <img width="642" alt="Screenshot 2022-04-22 at 09 41 46" src="https://user-images.githubusercontent.com/84564830/164635941-5de48c15-9f61-4485-b7ab-92acb081e2f3.png">
 </p>
+
 > You can look at your data in MongoDB Atlas to ensure data is rightly sent to your cluster.
 > From the main portal, click on Browse Collections.
 <p align="center">
 <img width="635" alt="Screenshot 2022-04-22 at 09 41 57" src="https://user-images.githubusercontent.com/84564830/164636159-64563a94-1010-4720-b926-f4597c4f8492.png">
 <img width="636" alt="Screenshot 2022-04-22 at 09 42 05" src="https://user-images.githubusercontent.com/84564830/164636280-4b3707c1-0302-4497-ac24-34e7acf567dd.png">
 </p>
+
 > At this point, you have a way to automatically insert data into your MongoDB Atlas Cluster.
 
 ### Step 4: Provision an EC2 instance on AWS
