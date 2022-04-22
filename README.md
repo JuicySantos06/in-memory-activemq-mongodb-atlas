@@ -92,15 +92,34 @@ After that you should be able to run the previous command:
 
 ### Step 4: Provision an EC2 instance on AWS
 > Connect to your AWS account using the management console.
+<p align="center">
+<img width="638" alt="Screenshot 2022-04-22 at 11 14 26" src="https://user-images.githubusercontent.com/84564830/164677130-2e53d618-5f22-4033-ba0f-9e764e80f552.png">
+</p>
+
 > Click on Launch Instances.
+<p align="center">
+<img width="642" alt="Screenshot 2022-04-22 at 11 14 41" src="https://user-images.githubusercontent.com/84564830/164677159-6bf47d9c-e5d9-43ff-b485-935e3c2dffe9.png">
+</p>
+
 > Choose the Amazon Linux 2 AMI (HVM) - Kernel 4.14 and the following instance type t2.micro. 
 > There is no need to change the other parameters (number of instances, storage, etc.). We will accept the default values. 
+<p align="center">
+<img width="636" alt="Screenshot 2022-04-22 at 11 14 59" src="https://user-images.githubusercontent.com/84564830/164677182-ac4dac05-5718-4a7a-b1ba-e5d79bc8b1af.png">
+</p>
+
 > Add the following tag: Name = in-memory-activemq
+<p align="center">
+<img width="643" alt="Screenshot 2022-04-22 at 11 16 25" src="https://user-images.githubusercontent.com/84564830/164677217-fb1acb0b-2315-4d8e-96d4-91690e21c701.png">
+</p>
+
 > Update the security group configuration by adding the following rules:
 ```
 Allow inbound connection for SSH on 22 and source = 0.0.0.0/0._
 Allow inbound connection for Custom TCP Rule on 8282 and source = 0.0.0.0/0.
 ```
+
+
+
 > You can then click on Launch. Ensure you have an existing key pair to connect to that instance, otherwise create one.
 
 ### Step 5: Connect to your in-memory-activemq EC2 instance
@@ -117,6 +136,10 @@ Allow inbound connection for Custom TCP Rule on 8282 and source = 0.0.0.0/0.
 
 ### Step 8 : Re-connect to your in-memory-activemq EC2 instance
 > Open a terminal window and connect to that instance.
+<p align="center">
+<img width="638" alt="Screenshot 2022-04-22 at 11 15 51" src="https://user-images.githubusercontent.com/84564830/164677227-4b3f9a01-e075-4cc3-9dcc-479310db1f6b.png">
+</p>
+
 > Go and install Git on your instance by inserting the following commands:
 ```
 sudo yum update -y
@@ -142,6 +165,10 @@ sudo yum install -y apache-maven
 > Insert the correct values for the following elements: **mongodb.atlas.api.key, mongodb.atlas.cluster, mongodb.atlas.datab	ase, mongodb.atlas.collection**.
 > The mongodb.atlas.api.key is the api key you previously retrieved from MongoDB Atlas. 
 > Note that we are leveraging the latest cluster created (MQAtlas) as the target environment.
+<p align="center">
+<img width="640" alt="Screenshot 2022-04-22 at 11 22 48" src="https://user-images.githubusercontent.com/84564830/164677652-b132abb4-5e75-4609-ae24-bba4fc1f74fa.png">
+</p>
+
 > Go into the repository that you just downloaded and issue the following Maven command:
 ```
 cd $HOME/git_repo/in-memory-activemq
