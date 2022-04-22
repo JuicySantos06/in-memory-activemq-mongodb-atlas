@@ -118,21 +118,32 @@ Allow inbound connection for SSH on 22 and source = 0.0.0.0/0._
 Allow inbound connection for Custom TCP Rule on 8282 and source = 0.0.0.0/0.
 ```
 
-
+<p align="center">
+<img width="639" alt="Screenshot 2022-04-22 at 11 15 12" src="https://user-images.githubusercontent.com/84564830/164677238-d5c2bc7d-8dd5-4969-8f65-e602abc877cd.png">
+</p>
 
 > You can then click on Launch. Ensure you have an existing key pair to connect to that instance, otherwise create one.
 
 ### Step 5: Connect to your in-memory-activemq EC2 instance
 > Follow the instructions provided by AWS to connect to your instance. Here is an example of how to do it.
+<p align="center">
+<img width="560" alt="Screenshot 2022-04-22 at 11 15 29" src="https://user-images.githubusercontent.com/84564830/164677236-773c54ef-46d0-44aa-9bc6-ee780bf301a7.png">
+</p>
 
 ### Step 6 : Provision another MongoDB Atlas cluster
 > You can go through steps 1 and 2. 
 > As an example, we will create a cluster named MQAtlas (because that cluster will automatically be receiving data from ActiveMQ), database name will be sample_customers and collection name will be users.
 > You choose whatever values suit you the best. Note that we will be needing that information to feed into the ActiveMQ container which will be running on your EC2 instance.
+<p align="center">
+<img width="643" alt="Screenshot 2022-04-22 at 11 15 35" src="https://user-images.githubusercontent.com/84564830/164677234-5619288c-553b-4d5c-ad7c-0fc9841f266c.png">
+</p>
 
 ### Step 7 : Create a MongoDB Data API Key
 > Go over your MongoDB Atlas control plan and enable the data API for both AtlasMQ and MQAtlas clusters.
 > Do not forget to save the newly created Data API key, we will need it soon after.
+<p align="center">
+<img width="639" alt="Screenshot 2022-04-22 at 11 15 45" src="https://user-images.githubusercontent.com/84564830/164677232-9383b67c-208b-4318-a1a7-f9c37b7c5fe7.png">
+</p>
 
 ### Step 8 : Re-connect to your in-memory-activemq EC2 instance
 > Open a terminal window and connect to that instance.
@@ -184,6 +195,10 @@ sudo systemctl start docker.service
 sudo docker build --tag=in-memory-activemq:latest .
 sudo docker images
 ```
+<p align="center">
+<img width="643" alt="Screenshot 2022-04-22 at 11 16 25" src="https://user-images.githubusercontent.com/84564830/164677217-fb1acb0b-2315-4d8e-96d4-91690e21c701.png">
+</p>
+
 > Let start and run the docker container:
 ```
 sudo docker run -p 8282:8081 in-memory-activemq:latest
