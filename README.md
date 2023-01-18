@@ -1,4 +1,4 @@
-# Demo MongoDB Atlas & ActiveMQ
+# MongoDB Atlas & ActiveMQ Integration (Sink & Source)
 
 ### General Information
 > The following demo aims at showing how you could integrate a MongoDB Atlas cluster with an in-memory ActiveMQ message broker. 
